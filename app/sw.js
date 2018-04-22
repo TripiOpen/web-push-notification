@@ -25,6 +25,13 @@ self.addEventListener('push', function(event) {
     console.log('[Service Worker] Push Received.');
     console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
     
+    try {
+      var jsondata = JSON.parse(event.data.text());
+      console.dir(jsondata);
+    } catch (error) {
+      console.dir(error);
+    }
+
     const title = 'Back-Office';
     const options = {
       body: `"${event.data.text()}"`,
